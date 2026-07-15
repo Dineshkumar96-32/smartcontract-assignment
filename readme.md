@@ -174,74 +174,56 @@ You are also evaluated on:
 
 
 ---
-
 # My Solution
 
-## Completed Tasks
+## Implementation Summary
 
 ### Task 1 – Bug Fix & Hardening
 - Prevented the mint price from being set to zero.
-- Improved the ETH refund logic for excess payments.
-- Added unit tests covering edge cases.
+- Ensured excess ETH is refunded correctly.
+- Added tests covering mint price validation and refund scenarios.
 
 ### Task 2 – Token Burn
-- Implemented `burn(uint256 amount)`.
-- Implemented `burnFrom(address account, uint256 amount)`.
-- Added the `Burned` event.
-- Added comprehensive tests for burn functionality.
+- Added `burn()` and `burnFrom()` functions.
+- Implemented the `Burned` event.
+- Added tests for successful and failing burn scenarios.
 
 ### Task 3 – Events & Observability
-- Added events for mint price updates.
-- Added events for treasury minting.
-- Added events for ETH withdrawals.
-- Added event validation tests.
+- Added `MintPriceUpdated`, `TreasuryMint`, and `Withdrawn` events.
+- Added tests to verify the emitted events.
 
 ### Task 4 – ZyncVesting
 - Implemented the `ZyncVesting` contract.
-- Added contract funding functionality.
-- Added vesting schedule creation.
+- Added funding and vesting schedule creation.
 - Implemented linear vesting with cliff support.
 - Protected token release using `ReentrancyGuard`.
-- Added comprehensive unit tests.
+- Added unit tests for vesting functionality.
 
----
-
-## Compile
+## Running the Project
 
 ```bash
 npm install
-npm run compile
+npm run chain
+npm run deploy
+npm run dev
 ```
 
-## Run Contract Tests
+Open:
 
-```bash
-npm run test:contracts
+```
+http://localhost:3000
 ```
 
-or
+## Security Notes
 
-```bash
-npx hardhat test
-```
-
----
-
-## Security Assumptions
-
-- Administrative functions are restricted to the contract owner.
-- Token release is protected using `ReentrancyGuard`.
-- Double claiming is prevented by tracking released amounts.
-- Input validation is applied where appropriate.
-- Token burns correctly reduce the total supply while preserving the maximum supply cap logic.
-
----
+- Owner-only administrative functions.
+- `ReentrancyGuard` protects token release.
+- Double claiming is prevented.
+- Input validation is implemented for administrative functions.
 
 ## Future Improvements
 
-- Support multiple vesting schedules per beneficiary.
-- Add schedule cancellation and revocation.
-- Emit additional vesting-related events.
-- Further optimize gas usage.
-- Increase edge-case and fuzz test coverage.
-
+- Support multiple vesting schedules.
+- Add vesting revocation.
+- Improve gas optimization.
+- Add more test coverage.

@@ -175,34 +175,34 @@ You are also evaluated on:
 
 ---
 
-# My Changes
+# My Solution
 
 ## Completed Tasks
 
-- ✅ Task 1 – Bug Fix & Hardening
-  - Prevented setting the mint price to zero.
-  - Fixed refund logic for excess ETH.
-  - Added unit tests for edge cases.
+### Task 1 – Bug Fix & Hardening
+- Prevented the mint price from being set to zero.
+- Improved the ETH refund logic for excess payments.
+- Added unit tests covering edge cases.
 
-- ✅ Task 2 – Token Burn
-  - Added `burn(uint256 amount)`.
-  - Added `burnFrom(address account, uint256 amount)`.
-  - Added `Burned` event.
-  - Added tests for burn functionality.
+### Task 2 – Token Burn
+- Implemented `burn(uint256 amount)`.
+- Implemented `burnFrom(address account, uint256 amount)`.
+- Added the `Burned` event.
+- Added comprehensive tests for burn functionality.
 
-- ✅ Task 3 – Events & Observability
-  - Added events for mint price updates.
-  - Added events for treasury minting.
-  - Added events for ETH withdrawals.
-  - Added event tests.
+### Task 3 – Events & Observability
+- Added events for mint price updates.
+- Added events for treasury minting.
+- Added events for ETH withdrawals.
+- Added event validation tests.
 
-- ✅ Task 4 – ZyncVesting
-  - Created `ZyncVesting.sol`.
-  - Added funding functionality.
-  - Added vesting schedule creation.
-  - Added linear vesting calculation.
-  - Added secure token release using `ReentrancyGuard`.
-  - Added comprehensive unit tests.
+### Task 4 – ZyncVesting
+- Implemented the `ZyncVesting` contract.
+- Added contract funding functionality.
+- Added vesting schedule creation.
+- Implemented linear vesting with cliff support.
+- Protected token release using `ReentrancyGuard`.
+- Added comprehensive unit tests.
 
 ---
 
@@ -229,18 +229,19 @@ npx hardhat test
 
 ## Security Assumptions
 
-- Only the contract owner can fund the vesting contract.
-- Only the owner can create vesting schedules.
-- Token release is protected with `ReentrancyGuard`.
-- Double claiming is prevented using the `released` amount.
-- Burning tokens reduces the total supply correctly.
+- Administrative functions are restricted to the contract owner.
+- Token release is protected using `ReentrancyGuard`.
+- Double claiming is prevented by tracking released amounts.
+- Input validation is applied where appropriate.
+- Token burns correctly reduce the total supply while preserving the maximum supply cap logic.
 
 ---
 
 ## Future Improvements
 
 - Support multiple vesting schedules per beneficiary.
-- Add schedule cancellation or revocation.
-- Add additional vesting events.
-- Improve gas optimization.
-- Add more edge-case tests.
+- Add schedule cancellation and revocation.
+- Emit additional vesting-related events.
+- Further optimize gas usage.
+- Increase edge-case and fuzz test coverage.
+
